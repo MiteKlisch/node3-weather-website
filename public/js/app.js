@@ -11,7 +11,7 @@ console.log('Client side javascript code is loaded!');
 
 const weatherForm = document.querySelector('form');
 const search = document.querySelector('input');
-// const messageOne = document.querySelector('#message-1');
+const messageOne = document.querySelector('#message-1');
 const messageTwo = document.querySelector('#message-2');
 
 // messageOne.textContent = 'hui';
@@ -23,16 +23,16 @@ weatherForm.addEventListener('submit', (e) => {
     
     const location = search.value;
 
-    messageTwo.textContent = 'Loading...';
+    messageOne.textContent = 'Loading...';
     messageTwo.textContent = '';
  
-    fetch('gi/weather?adress=' + encodeURIComponent(location)).then((response) => {
+    fetch('/weather?adress=' + encodeURIComponent(location)).then((response) => {
     response.json().then((data) => {
         if (data.error) {
             console.log( data.error );
             messageTwo.textContent = data.error;
             } else {
-                messageTwo.textContent = data.location;
+                messageOne.textContent = data.location;
                 messageTwo.textContent = data.forecast;
                 console.log(data.location);
                 console.log(data.forecast);
